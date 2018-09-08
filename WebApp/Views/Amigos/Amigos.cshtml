@@ -1,0 +1,51 @@
+@model WebApp.Models.Alumno
+@{ ViewData["Title"]= "Amigos"; }
+
+<div class="vertical-menu">
+    <h4 > ¡ Tus Amigos de Lagash University !</h4>
+</div>
+<div class= "amigosmenu">
+    <h1 class= "titulolistaamigos"> Tus Amigos <img style="width:37px;height:37px ;"src="~/images/feliz.png"alt=""> </h1>
+        
+    @foreach(var amigo in ViewData["Amigos"] as List<Alumno>)
+        {
+            <li class= "AmigosLista">          
+                @amigo.Nombre   <img style="width:15px;height:15px ;"src="~/images/calendario.png" onclick="CalendarioAmigo(@amigo.Id)" />
+                @Html.ActionLink(   "✖️", "EliminarAmigo", "Amigos", new { seguidoId = amigo.Id }, new { @class = "eliminarAmigo" })
+            </li>  
+        }
+</div>  
+<br>
+<div class="buscadoramigos2"style.display = 'inline' ></div>
+<div id="friendSearch" class="buscadoramigos"style.display = 'inline' >
+    <img class ="amigologo"src="~/images/amigo.png" alt= "">
+    <h1 class="amigostitulo"> Buscá a tus amigos de Lagash University : </h1>
+    @using(Html.BeginForm("BuscarAlumno", "Amigos", FormMethod.Post, new { @class="formularioamigos" }))
+    {
+        <p class="datosamigos">Legajo </p> 
+        @Html.TextBoxFor( m => (m.Id), new { placeholder=" LEGAJO DE TU AMIGO", @class =" buscarinput", id = "Id", type="number", min="1"})
+        <p class="datosamigos">DNI </p>
+        @Html.TextBoxFor( m => (m.DNI), new { placeholder=" D.N.I DE TU AMIGO", @class =" buscarinput", id = "DNI", type="number", min="1"})
+        
+        <input class="agregar" type="button" value="Buscar" onclick="ValidarEnvio('formularioamigos')"/>
+    }
+    <p class="alumno" id="alumno">
+        @ViewData["Alumno"]
+        @{ var AmigoExiste = ((ViewData["Amigos"] as List<Alumno>).Exists( x => x.Id == (int)ViewData["Id"] )); }
+        @if(ViewData["Alumno"] != "" && !AmigoExiste)
+        {
+            @Html.ActionLink("✅", "AgregarAmigo", "Amigos", new { seguidoId = ViewData["Id"] })
+        }
+        @if(AmigoExiste)
+        {
+            @Html.Raw(" 😎Ya es tu amigo😎")
+        }
+    </p>
+    <p id="Error"  class="error">
+        @ViewData["Error"]
+    </p> 
+</div>
+<div>
+  <div id="Calendario"> </div>
+  <img style="width:30px;height:30px; "src="~/images/eliminar.png" id="boton" onclick="BotonCalendario()">
+</div>

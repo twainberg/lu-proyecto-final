@@ -1,0 +1,21 @@
+@{ ViewData["Title"]= "Materias Aprobadas"; }
+ 
+  <div class="padre">
+   <div class="MateriasAprobadas">
+      <h1 class="tituloaprobadas">Materias Aprobadas</h1>
+        @foreach (var materia in ViewData["MateriasAprobadas"] as List<MateriaAlumno>)
+          {
+            <li class="liaprobadas">@materia.Nombre</li>
+          }    
+   </div>
+   <div class="notas">
+      <h1 class="titulonotas">Notas</h1>
+        @foreach (var materia in ViewData["MateriasAprobadas"] as List<MateriaAlumno>)
+        {
+          <li class="linotas">@materia.Nota</li>
+        }
+    </div>
+</div>
+  <br>
+  <br>
+  <br>

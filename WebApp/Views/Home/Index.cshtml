@@ -1,0 +1,11 @@
+@{ ViewData["Title"]= "Inicio"; }
+
+<div class="vertical-menu">
+    <h4 > ¡Bienvenido a Lagash University !</h4>
+    <div class="vertical-menu1"></div>
+    <h5 >  Materias Cursadas Actualmente </h5>
+</div>
+<div class="CalendarioIndex" >
+    @await Html.PartialAsync("Calendario")
+    <br>
+</div>

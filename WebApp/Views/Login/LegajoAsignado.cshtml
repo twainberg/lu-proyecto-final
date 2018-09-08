@@ -1,0 +1,27 @@
+@{
+    Layout = null;
+ }
+
+<title>Inicio</title>
+<environment include="Development">
+    <link rel="stylesheet" href="~/css/site.css" />
+</environment>
+
+    <div class="legajo1">
+        <div class="legajo2">
+            <div class="legajo3">
+                <h1 class="infolegajo">¡Bienvenido! Tu número de Legajo es: @ViewData["IdAlumno"]</h1>
+                
+                <h2 class="infolegajo"> Es necesario para iniciar sesión. No lo olvides !</h2>
+                <p class ="botoncerrar" >@Html.ActionLink("Cerrar", "Index", "Home", null, new { @class="botoncerrar" })</p>
+            </div>
+        
+        </div>
+
+        <div class="legajo-gif1">
+            
+            <video autoplay  src="~/images/video.mp4#t=2,42"></video>
+      
+        </div>
+        
+    </div>

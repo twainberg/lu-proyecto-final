@@ -1,0 +1,55 @@
+@{
+    Layout = null;
+ }
+@model WebApp.Models.LoginModel
+
+<title>Login</title>
+<environment include="Development">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/login.js"></script>
+</environment>
+<div class="loginnav">
+ <h1>¡Lagash University!</h1>
+</div>
+<div id="box">
+    <div id="main"></div>
+    
+    <div id="loginform">
+        <h1>LOGIN</h1>
+        @using(Html.BeginForm("Login", "Login", FormMethod.Post))
+        {
+            @Html.TextBoxFor( m => (m.Legajo), new { placeholder="Legajo", @class="input", id="Legajo", type="text", min="1"})
+            <br />
+            @Html.TextBoxFor( m => (m.Password), new { placeholder="Contraseña", @class="input", id="PasswordLogin", type="password", min="1"})
+            <br />
+            <p id="ErrorLogin">@Html.ValidationMessage("CustomError")</p>
+            <button type="submit">Ingresar</button>
+        }
+    </div>
+
+    <div id="regform">
+        <h1>Registrate</h1>
+        @using(Html.BeginForm("RegistrarAlumno", "Login", FormMethod.Post, new { onsubmit="return ValidarRegistro()" }))
+        {
+            @Html.TextBoxFor( m => (m.NombreCompleto), new { placeholder="Nombre completo", @class="input", id="Nombre", type="text", min="1"})
+            <br />
+            @Html.TextBoxFor( m => (m.Dni), new { placeholder="DNI", @class="input", id="Dni", type="text", min="1"})
+            <br />
+            @Html.TextBoxFor( m => (m.Password), new { placeholder="Contraseña", @class="input", id="Password", type="password", min="1"})
+            <br />
+            <p id="Info">La contraseña debe tener por lo menos 6 caracteres</p>
+            <p id="Error">@Html.ValidationMessage("CustomError")</p> 
+            <button>Registrate</button>
+        }
+    </div>
+    
+    <div id="login_msg">Ya estas registrado?</div>
+    <div id="reg_msg">Aún no estas registrado?</div>
+    
+    <button id="login_btn">Ingresar</button>
+    <button id="reg_btn">Registrate</button>
+</div>
+
+

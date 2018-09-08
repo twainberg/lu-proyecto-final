@@ -1,0 +1,81 @@
+@model WebApp.Models.Alumno
+@{
+    Layout = null;
+ }
+
+<title>Administrador</title>
+<environment include="Development">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/site.js"></script>
+</environment>
+<div class="navadmin">
+    <h1>¡Bienvenido Administrador Lagash University!<a asp-area="" asp-controller="Login" asp-action="Logout"><img style="width:20px;height:20px ;"src="~/images/salir.png"alt=""> Salir</a>
+    </h1>
+</div>
+<br>
+<div class="administrador-divFormulario">
+    @using(Html.BeginForm("BuscarAlumno", "Administrador", FormMethod.Post, new { @class = "formulario administrador-formulario"}))
+    {
+        @Html.TextBoxFor( m => (m.Id), new { placeholder=" LEGAJO DEL ALUMNO", @class = "administrador-input", id = "Id", type="number", min="1"});
+        <br>
+        @Html.TextBoxFor( m => (m.DNI), new { placeholder=" D.N.I DEL ALUMNO", @class = "administrador-input", id = "DNI", type="number", min="1"});
+        <br>
+        <input class="administrador-botonBuscar" type="button" value="Buscar" onclick="ValidarEnvio('formulario')"/>
+        <p class="administrador-error" id="Error">@ViewData["Error"]</p>
+    }
+</div>
+<div class="administrador-materias">
+    <p class="administrador-alumno">Alumno: @ViewData["Alumno"]</p>
+    <table class="administrador-tabla">
+        <th>
+            Materia
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Nota
+        </th>
+        <th>
+
+        </th>
+        <th>
+            Información
+        </th>
+        @foreach(var materia in ViewData["MateriasAlumno"] as List<MateriaAlumno>)
+        {
+            <tr>
+                <td >          
+                    <p id="@materia.Id-nombre">@materia.Nombre</p>
+                </td>  
+                <td>          
+                    <select id="@materia.Id-estado">
+                        @foreach (var Estado in Enum.GetValues(typeof(StatusMateria)))
+                        {
+                            if((StatusMateria)Estado == materia.Status)
+                            {
+                                <option selected >@Estado</option>
+                            }
+                            else
+                            {
+                                <option>@Estado</option>
+                            }
+                        }
+                    </select>
+                </td>  
+                <td>          
+                    <input id="@materia.Id-nota" type="number" value="@materia.Nota" min=0 max=10 />
+                </td>  
+                <td>
+                    <input id="@materia.Id" type="button" value="🔄" onclick="ActualizarMateria(this.id)"/>
+                </td>
+                <td>
+                    <p id="@materia.Id-resultado"></p>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<br>

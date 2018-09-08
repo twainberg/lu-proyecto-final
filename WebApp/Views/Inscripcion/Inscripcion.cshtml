@@ -1,0 +1,38 @@
+@model WebApp.Models.Materia
+@{ ViewData["Title"]= "Inscripción"; }
+
+<div class="vertical-menu">
+    <h4 >Lagash Inscripción a Materias 2018</h4>
+    <ul>
+        <li>
+            <h1 class= "titulolista">Materias Disponibles</h1>
+        </li>
+        @foreach(var materia in ViewData["MateriasDisponibles"] as List<Materia>)
+        {
+                <li class= "vertical-li materia-disponible">
+                    @Html.ActionLink(materia.Nombre, "Inscripcion", "Inscripcion", new { id = materia.Id })
+                    @if(@WebApp.Controllers.AmigosController.AmigosEnMateriaDDBB(materia.Id))
+                    { 
+                        <img style="width:20px;height:20px;" src="~/images/amigosCalendario.png"></img>
+                    }
+                </li>   
+        }
+    </ul>
+    <ul>
+        <li>
+            <h1 class= "titulolista">Materias No Disponibles</h1>
+        </li>
+        @foreach(var materia in ViewData["MateriasNoDisponibles"] as List<Materia>)
+        {
+                <li class="vertical-li">
+                    @materia.Nombre
+                </li>   
+        }
+    </ul>
+</div>
+<div class="Calendario" >
+    @await Html.PartialAsync("Calendario")
+    <br>
+    <a id="confirmar" class="boton confirmar">Confirmar</a>
+    @Html.ActionLink("Cancelar", "Inscripcion", "Inscripcion", new { id = -1 }, new {@class = "boton cancelar"})
+</div>

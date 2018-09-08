@@ -1,0 +1,52 @@
+@{ var amigos = new List<string>(); }
+<table border="2">
+    <tr>
+        <th>
+
+        </th>
+        @foreach(Dias Dia in Enum.GetValues(typeof(Dias)))
+        {
+            <th>
+                @Dia
+            </th>
+        }
+    </tr>
+    @foreach(Turnos turno in Enum.GetValues(typeof(Turnos)))
+    { 
+        <tr>
+            <td>
+                @turno
+            </td>
+            @foreach(Dias dia in Enum.GetValues(typeof(Dias)))
+            {
+                <td class="calendario-materia">
+                    <p class="materias-anotadas">@WebApp.Controllers.InscripcionController.ValidarHorarioLibreDDBB((int)ViewData["IdAlumno"], dia, turno)</p>
+                    @foreach (var materia in ViewData["Materias"] as List<MateriaAlumno>)
+                    {
+                        if (materia.Dia == dia && materia.Turno == turno)
+                        {
+                            <p class="opciones" id="@dia@turno" onclick="SeleccionarMateria(this.id, '@materia.Id', '@materia.Nombre',  '@materia.Dia', '@materia.Turno')">
+                                @materia.Nombre
+                                @{
+                                    amigos = @WebApp.Controllers.AmigosController.AmigosEnMateriaDDBB(@materia.Id, @materia.Dia, @materia.Turno); 
+                                    if(amigos.Count != 0)
+                                    {
+                                        <div class="dropdown">
+                                            <img style="width:20px;height:20px;" src="~/images/amigosCalendario.png"></img>
+                                            <div class="amigos-content">
+                                                @foreach(var amigo in amigos)
+                                                {
+                                                    <p>@amigo</p>
+                                                }
+                                            </div>
+                                        </div> 
+                                    } 
+                                }                        
+                            </p>
+                        }
+                    }
+                </td>
+            }
+        </tr>
+    }
+</table>

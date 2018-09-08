@@ -1,0 +1,116 @@
+Crear sistema universitario para anotarse a las materias
+
+Correlativas
+Horarios
+
+que funcione para todos los usuarios 
+y sugerencias en las que usuarios amigos estan anotados.
+
+Sin consola , y que sea responsive
+1- cargar arrays con la info 
+Para el lunes , ya tener las pantallas que se van a hacer.
+50 max alumnos por curso
+hacer base de datos de alumnos loguin con el numero de legajo etc
+base de datos de materias aprobadas para correlativas
+
+PANTALLAS
+
+1- Loguin 
+2- Calendario con materias actuales , y un menu para administracion/manejo de materias
+	A)- Inscripcion a materias nuevas (listado) 
+		A)Desplegable materias disponibles (validada por horarios y correlativas)
+		B)Seleccion de horario de la materia
+	B)- Dar de baja materias
+
+
+-----------------------------------------------------------------------------
+FUNCIONALIDADES
+
+1)ABM Estudiantes
+
+2)Inscripcion
+	A)Plan de materias a inscribirse
+	
+		I)Correlativas
+		II)Motivo de rechazo
+		III)Logica del calendario
+		
+	B)Confirmacion de inscripcion/cancelar
+		I)Llamado a AgregarMateria
+		II)Obtener datos de la materia
+	
+	C)Validacion de correlativas
+		I)Lista de materias aprobadas
+		II)Guardado de materias aprobadas en algun lugar
+		III)Filtrado de materias no disponibles para cursar
+		
+		
+	D)Validacion de horarios
+	
+3)Login
+	A)Distinciones de permisos de usuario
+		I)Admin
+		II)User
+		
+	B)Autentificacion de usuario
+		I)Validacion de user
+		II)Validacion de password
+		
+	C)Registro
+		I)Crear nuevo usuario
+			
+	
+4)Sistema de amigos
+	A)Agregar amigos
+	B)Eliminar amigos
+	C)Recomendaciones
+	D)Busqueda mediante legajo/DNI
+	E)Sistema de seguimiento, en lugar de aceptarse mutuamente
+	F)Agregar * en materia cursada por amigos
+	G)Marcar en calendario de inscrpcion las materias cursadas por amigos
+	
+5)Ver historial de materias cursadas, aprobadas
+
+6)Ver listado de correlativas
+
+7)Calendario de materias actuales(en curso)
+
+8)Funcionalidad de administrados
+	A)Notas de materias aprobadas (arriba de 7)
+	B)Dar de bajas a alumnos
+
+	
+---------------------------------------------------------------
+FRONT END
+
+	Motivo de NoDisponibilidad
+	Responsive
+		Calendario responsive
+			
+	
+	
+	
+	
+	
+	
+------------------------------------------------------------------------
+PRIORIDADES
+
+Horarios
+Correlativas
+Amigos
+Gestion de alumno
+.
+.
+.
+login
+
+
+
+
+
+
+HACER 3 PANTALLAS , 
+LA PRIMERA CON LA  MATERIA
+DESPUES LA MATERIA SELECCIONADA Y HORARIO
+Y DESPUES LA MATERIA AGREGADA .
